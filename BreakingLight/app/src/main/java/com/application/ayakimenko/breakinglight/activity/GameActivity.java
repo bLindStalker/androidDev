@@ -1,6 +1,5 @@
 package com.application.ayakimenko.breakinglight.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -44,6 +43,10 @@ public class GameActivity extends AppCompatActivity {
 
         startTimer();
         startGame();
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
     private void startGame() {
@@ -129,7 +132,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void onClickLight(View view) {
         if (view.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.light_on).getConstantState())) {
-            view.setBackground(getResources().getDrawable(R.drawable.light_brocken));
+            view.setBackground(getResources().getDrawable(R.drawable.light_broken));
             score++;
         } else {
             View life = lives.get(0);

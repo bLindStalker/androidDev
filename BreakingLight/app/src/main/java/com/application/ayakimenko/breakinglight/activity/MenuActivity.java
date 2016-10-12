@@ -12,8 +12,13 @@ public class MenuActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
     public void onClickStart(View view) {
