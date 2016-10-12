@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_game"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:background="@drawable/background"
+    tools:context="com.application.ayakimenko.breakinglight.activity.GameActivity">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/button2"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/button2"
+        android:layout_marginEnd="38dp"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/button5"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:layout_alignTop="@+id/button5"
+        android:layout_marginEnd="38dp"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight"
+        android:layout_above="@+id/button5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight"
+        android:layout_marginBottom="85dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button2" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight"
+        android:layout_marginBottom="34dp"
+        android:layout_above="@+id/button2"
+        android:layout_alignStart="@+id/button2" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/button8"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="@dimen/buttonLightWidth"
+        android:layout_height="@dimen/buttonLightHeight"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/button8"
+        android:layout_marginEnd="38dp"
+        android:background="@drawable/light_off"
+        android:onClick="onClickLight" />
+
+    <ImageView
+        android:layout_width="@dimen/life"
+        android:layout_height="@dimen/life"
+        app:srcCompat="@drawable/heard"
+        android:id="@+id/life2"
+        android:layout_alignTop="@+id/life3"
+        android:layout_toStartOf="@+id/life3"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_marginTop="14dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button7"
+        android:layout_marginStart="11dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="30" />
+
+    <TextView
+        android:text="@string/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/score"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:layout_alignTop="@+id/timer"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="@string/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/timer"
+        android:layout_alignEnd="@+id/timer" />
+
+    <ImageView
+        android:layout_width="@dimen/life"
+        android:layout_height="@dimen/life"
+        app:srcCompat="@drawable/heard"
+        android:id="@+id/life1"
+        android:layout_alignTop="@+id/life2"
+        android:layout_toStartOf="@+id/life2"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="@dimen/life"
+        android:layout_height="@dimen/life"
+        app:srcCompat="@drawable/heard"
+        android:id="@+id/life3"
+        android:layout_above="@+id/textView4"
+        android:layout_alignEnd="@+id/button9"
+        android:contentDescription=""
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

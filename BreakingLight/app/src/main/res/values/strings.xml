@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Breaking Light</string>
+    <string name="button_start">Start</string>
+    <string name="button_exit">Exit</string>
+    <string name="score_text">Your score:</string>
+    <string name="button_back_to_menu">Back to menu</string>
+    <string name="button_retry">Retry</string>
+    <string name="game_over">Game Over</string>
+    <string name="score">Score:</string>
+    <string name="timer">Timer:</string>
+</resources>
