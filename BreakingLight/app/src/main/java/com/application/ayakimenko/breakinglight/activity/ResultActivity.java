@@ -1,9 +1,8 @@
 package com.application.ayakimenko.breakinglight.activity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,7 +10,7 @@ import com.application.ayakimenko.breakinglight.R;
 
 import static com.application.ayakimenko.breakinglight.constants.Constants.SCORE;
 
-public class ResultActivity extends Activity {
+public class ResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
