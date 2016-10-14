@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Выбитые лампы</string>
+    <string name="button_start">Старт</string>
+    <string name="button_exit">Выход</string>
+    <string name="score_text">Ваш результат:</string>
+    <string name="button_back_to_menu">Вернуться в меню</string>
+    <string name="button_retry">Попробывать ещё раз</string>
+    <string name="game_over">Конец игры</string>
+    <string name="score">Результат:</string>
+    <string name="timer">Таймер:</string>
+    <string name="exitText">Выход: Вы уверены?</string>
+    <string name="yes">Да!</string>
+    <string name="no">Нет</string>
+    <string name="exitMessage">Нажмите ещё раз для выхода!</string>
+    <string name="language">Русский </string>
+</resources>

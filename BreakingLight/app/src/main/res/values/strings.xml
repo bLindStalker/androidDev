@@ -8,4 +8,9 @@
     <string name="game_over">Game Over</string>
     <string name="score">Score:</string>
     <string name="timer">Timer:</string>
+    <string name="exitText">Exit: Are you sure?</string>
+    <string name="yes">Yes!</string>
+    <string name="no">No</string>
+    <string name="exitMessage">Press once again to exit!</string>
+    <string name="language">English </string>
 </resources>

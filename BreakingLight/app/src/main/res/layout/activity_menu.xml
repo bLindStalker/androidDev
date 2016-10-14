@@ -38,6 +38,17 @@
         style="@style/Widget.AppCompat.TextView.SpinnerItem"
         android:layout_alignBottom="@+id/start"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp" />
+        android:layout_marginBottom="80dp"
+        android:id="@+id/textView" />
+
+    <Switch
+        android:text="@string/language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="changeLanguage"
+        android:id="@+id/languageSwitcher"
+        android:layout_marginBottom="38dp"
+        android:layout_above="@+id/textView"
+        android:layout_toStartOf="@+id/start" />
 
 </RelativeLayout>

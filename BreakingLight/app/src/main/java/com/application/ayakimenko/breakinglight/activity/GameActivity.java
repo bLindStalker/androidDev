@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.application.ayakimenko.breakinglight.R;
@@ -34,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_game);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -135,9 +137,13 @@ public class GameActivity extends AppCompatActivity {
             view.setBackground(getResources().getDrawable(R.drawable.light_broken));
             score++;
         } else {
-            View life = lives.get(0);
-            lives.remove(0);
-            life.setVisibility(INVISIBLE);
+            if (lives.size() > 0) {
+                View life = lives.get(0);
+                lives.remove(0);
+                life.setVisibility(INVISIBLE);
+            } else {
+                gameOver = true;
+            }
         }
         TextView scoreView = (TextView) findViewById(R.id.score);
         scoreView.setText(String.valueOf(score));

@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:configChanges="locale|orientation"
         android:icon="@drawable/light_broken"
         android:label="@string/app_name"
         android:supportsRtl="true"

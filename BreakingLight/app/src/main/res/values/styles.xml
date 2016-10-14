@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@drawable/light_broken</item>
+        <item name="android:windowBackground">@drawable/background</item>
     </style>
 
 </resources>
