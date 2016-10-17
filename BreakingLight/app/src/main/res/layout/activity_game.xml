@@ -121,7 +121,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/button7"
         android:layout_marginStart="11dp"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="#ffcc0000"
         android:text="30" />
 
     <TextView

@@ -1,21 +1,26 @@
 package com.application.ayakimenko.breakinglight.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.application.ayakimenko.breakinglight.R;
 
 import java.util.Locale;
+
+import static com.application.ayakimenko.breakinglight.activity.Helper.getLanguageShortName;
+import static com.application.ayakimenko.breakinglight.constants.Constants.APP_PREFERENCES;
+import static com.application.ayakimenko.breakinglight.constants.Constants.APP_PREFERENCES_LANGUAGE;
 
 public class MenuActivity extends Activity {
     private static long backPressedTime;
@@ -25,12 +30,27 @@ public class MenuActivity extends Activity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        setLanguage();
+    }
 
-        Locale locale = getResources().getConfiguration().locale;
+    private void setLanguage() {
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        if (mSettings.contains(APP_PREFERENCES_LANGUAGE)) {
+            int languageId = mSettings.getInt(APP_PREFERENCES_LANGUAGE, 0);
+            String languageShortName = getLanguageShortName(languageId);
+            Locale myLocale = new Locale(languageShortName);
+            Resources res = getResources();
 
-        if (locale.toString().equals("ru")) {
-            Switch languageSwitcher = (Switch) findViewById(R.id.languageSwitcher);
-            languageSwitcher.setChecked(true);
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+
+            if (!conf.locale.getLanguage().equals(languageShortName)) {
+                conf.setLocale(myLocale);
+                res.updateConfiguration(conf, dm);
+                Intent refresh = new Intent(this, MenuActivity.class);
+                startActivity(refresh);
+                finish();
+            }
         }
     }
 
@@ -61,7 +81,7 @@ public class MenuActivity extends Activity {
         quitDialog.setPositiveButton(R.string.yes, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+                finishAffinity();
             }
         });
 
@@ -74,26 +94,8 @@ public class MenuActivity extends Activity {
         quitDialog.show();
     }
 
-    public void changeLanguage(View view) {
-        Switch switcher = (Switch) view;
-        if (switcher.isChecked()) {
-            setLocale("ru");
-        } else {
-            setLocale("en");
-        }
-    }
-
-    public void setLocale(String lang) {
-        Locale myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-
-        conf.setLocale(myLocale);
-
-        res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(this, MenuActivity.class);
-        startActivity(refresh);
-        finish();
+    public void onClickSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 }

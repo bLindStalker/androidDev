@@ -12,5 +12,13 @@
     <string name="yes">Да!</string>
     <string name="no">Нет</string>
     <string name="exitMessage">Нажмите ещё раз для выхода!</string>
-    <string name="language">Русский </string>
+    <string name="settings">Настройки</string>
+    <string name="languageTextView">Язык</string>
+    <string name="failedToChangeLanguage">Не удалось изменить язык</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Русский</item>
+    </string-array>
+
 </resources>
