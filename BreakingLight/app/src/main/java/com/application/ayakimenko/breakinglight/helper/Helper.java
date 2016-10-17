@@ -1,4 +1,4 @@
-package com.application.ayakimenko.breakinglight.activity;
+package com.application.ayakimenko.breakinglight.helper;
 
 public class Helper {
 

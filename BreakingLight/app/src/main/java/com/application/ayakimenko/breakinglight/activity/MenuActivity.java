@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import com.application.ayakimenko.breakinglight.R;
 
 import java.util.Locale;
 
-import static com.application.ayakimenko.breakinglight.activity.Helper.getLanguageShortName;
+import static com.application.ayakimenko.breakinglight.helper.Helper.getLanguageShortName;
 import static com.application.ayakimenko.breakinglight.constants.Constants.APP_PREFERENCES;
 import static com.application.ayakimenko.breakinglight.constants.Constants.APP_PREFERENCES_LANGUAGE;
 
@@ -30,6 +31,7 @@ public class MenuActivity extends Activity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setLanguage();
     }
 

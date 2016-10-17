@@ -3,6 +3,7 @@ package com.application.ayakimenko.breakinglight.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -17,18 +18,18 @@ import com.application.ayakimenko.breakinglight.R;
 
 import java.util.Locale;
 
-import static com.application.ayakimenko.breakinglight.activity.Helper.getLanguageShortName;
 import static com.application.ayakimenko.breakinglight.constants.Constants.APP_PREFERENCES;
 import static com.application.ayakimenko.breakinglight.constants.Constants.APP_PREFERENCES_LANGUAGE;
+import static com.application.ayakimenko.breakinglight.helper.Helper.getLanguageShortName;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private SharedPreferences mSettings;
-    private int languageId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -36,8 +37,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         spinner.setOnItemSelectedListener(this);
 
         if (mSettings.contains(APP_PREFERENCES_LANGUAGE)) {
-            languageId = mSettings.getInt(APP_PREFERENCES_LANGUAGE, 0);
-            spinner.setSelection(languageId);
+            spinner.setSelection(mSettings.getInt(APP_PREFERENCES_LANGUAGE, 0));
         }
     }
 
@@ -75,7 +75,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                     Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(parent.getContext(),
-                    R.string.failedToChangeLanguage,
+                    getString(R.string.failedToSave),
                     Toast.LENGTH_SHORT).show();
         }
     }

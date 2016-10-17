@@ -14,7 +14,11 @@
     <string name="exitMessage">Нажмите ещё раз для выхода!</string>
     <string name="settings">Настройки</string>
     <string name="languageTextView">Язык</string>
-    <string name="failedToChangeLanguage">Не удалось изменить язык</string>
+    <string name="failedToSave">Не удалось сохранить</string>
+    <string name="bestPlayers">Лутьшие игроки:</string>
+    <string name="savedSuccess">был успешно сохранён.</string>
+    <string name="errorNameMessage">Длина имени должна быть больше 3 ох символов.</string>
+
 
     <string-array name="languages">
         <item>English</item>
