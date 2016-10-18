@@ -1,16 +1,25 @@
 package com.application.ayakimenko.breakinglight.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.application.ayakimenko.breakinglight.R;
 import com.application.ayakimenko.breakinglight.constants.Constants;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +39,11 @@ public class GameActivity extends AppCompatActivity {
     private boolean gameOver = false;
     private List<View> lives = new ArrayList<>();
     private List<View> onLights = new ArrayList<>();
+    private SoundPool mSoundPool;
+    private AssetManager mAssetManager;
+
+    private List<Integer> sounds;
+    private int notBroken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +51,24 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_game);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            createOldSoundPool();
+        } else {
+            createNewSoundPool();
+        }
+
+        mAssetManager = getAssets();
+
+        sounds = asList(
+                loadSound("glass1.mp3"),
+                loadSound("glass2.mp3"),
+                loadSound("glass3.mp3"),
+                loadSound("glass4.mp3"),
+                loadSound("glass5.mp3")
+        );
+
+        notBroken = loadSound("notBroken.mp3");
 
         lives.add(findViewById(R.id.life1));
         lives.add(findViewById(R.id.life2));
@@ -62,6 +94,11 @@ public class GameActivity extends AppCompatActivity {
         for (View button : buttons) {
             lightsTimer(true, button);
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void createOldSoundPool() {
+        mSoundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
     }
 
     private void startTimer() {
@@ -135,7 +172,10 @@ public class GameActivity extends AppCompatActivity {
         if (view.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.light_on).getConstantState())) {
             view.setBackground(getResources().getDrawable(R.drawable.light_broken));
             score++;
+            playSound(sounds.get(new Random().nextInt(4)));
+
         } else {
+            playSound(notBroken);
             if (lives.size() > 0) {
                 View life = lives.get(0);
                 lives.remove(0);
@@ -147,6 +187,12 @@ public class GameActivity extends AppCompatActivity {
         TextView scoreView = (TextView) findViewById(R.id.score);
         scoreView.setText(String.valueOf(score));
         checkLife();
+    }
+
+    private void playSound(int sound) {
+        if (sound > 0) {
+            mSoundPool.play(sound, 3, 3, 1, 0, 1);
+        }
     }
 
     private void checkLife() {
@@ -164,5 +210,29 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent(GameActivity.this, ResultActivity.class);
         intent.putExtra(Constants.SCORE, score);
         startActivity(intent);
+    }
+
+    private int loadSound(String fileName) {
+        AssetFileDescriptor afd;
+        try {
+            afd = mAssetManager.openFd(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), getString(R.string.failedToLoadSong) + fileName,
+                    Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+        return mSoundPool.load(afd, 1);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void createNewSoundPool() {
+        AudioAttributes attributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+        mSoundPool = new SoundPool.Builder()
+                .setAudioAttributes(attributes)
+                .build();
     }
 }

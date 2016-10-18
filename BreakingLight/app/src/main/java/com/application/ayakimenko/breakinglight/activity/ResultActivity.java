@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class ResultActivity extends AppCompatActivity {
     private EditText player1View;
     private EditText player2View;
     private EditText player3View;
+
     public static final Gson GSON = new Gson();
 
     @Override
@@ -45,6 +47,10 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        updateUserScore();
+    }
+
+    private void updateUserScore() {
         TextView score = (TextView) findViewById(R.id.scoreView);
         userScore = getIntent().getExtras().getInt(SCORE);
         score.setText(String.valueOf(userScore));

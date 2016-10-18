@@ -16,15 +16,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.application.ayakimenko.breakinglight.R;
+import com.application.ayakimenko.breakinglight.services.MusicService;
 
 import java.util.Locale;
 
-import static com.application.ayakimenko.breakinglight.helper.Helper.getLanguageShortName;
 import static com.application.ayakimenko.breakinglight.constants.Constants.APP_PREFERENCES;
 import static com.application.ayakimenko.breakinglight.constants.Constants.APP_PREFERENCES_LANGUAGE;
+import static com.application.ayakimenko.breakinglight.helper.Helper.getLanguageShortName;
 
 public class MenuActivity extends Activity {
     private static long backPressedTime;
+    private SharedPreferences mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +34,15 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+
+        startService(new Intent(MenuActivity.this, MusicService.class));
         setLanguage();
     }
 
     private void setLanguage() {
-        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
         if (mSettings.contains(APP_PREFERENCES_LANGUAGE)) {
             int languageId = mSettings.getInt(APP_PREFERENCES_LANGUAGE, 0);
             String languageShortName = getLanguageShortName(languageId);
@@ -83,7 +89,8 @@ public class MenuActivity extends Activity {
         quitDialog.setPositiveButton(R.string.yes, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finishAffinity();
+                finish();
+                System.exit(0);
             }
         });
 
