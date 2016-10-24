@@ -43,7 +43,8 @@ public class GameActivity extends AppCompatActivity {
     private AssetManager mAssetManager;
 
     private List<Integer> sounds;
-    private int notBroken;
+    private int notBroken1;
+    private int notBroken2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,8 @@ public class GameActivity extends AppCompatActivity {
                 loadSound("glass5.mp3")
         );
 
-        notBroken = loadSound("notBroken.mp3");
+        notBroken1 = loadSound("notBroken.mp3");
+        notBroken2 = loadSound("notBroken.mp3");
 
         lives.add(findViewById(R.id.life1));
         lives.add(findViewById(R.id.life2));
@@ -173,9 +175,9 @@ public class GameActivity extends AppCompatActivity {
             view.setBackground(getResources().getDrawable(R.drawable.light_broken));
             score++;
             playSound(sounds.get(new Random().nextInt(4)));
-
         } else {
-            playSound(notBroken);
+            playSound(notBroken1);
+            playSound(notBroken2);
             if (lives.size() > 0) {
                 View life = lives.get(0);
                 lives.remove(0);
@@ -191,7 +193,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void playSound(int sound) {
         if (sound > 0) {
-            mSoundPool.play(sound, 3, 3, 1, 0, 1);
+            mSoundPool.play(sound, 1, 1, 1, 0, 1);
         }
     }
 
